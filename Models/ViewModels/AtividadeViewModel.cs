@@ -1,3 +1,4 @@
+namespace EscolaPlus.Models{
 public class AtividadeViewModel
 {
     public int Id { get; set; }
@@ -8,4 +9,5 @@ public class AtividadeViewModel
     public int ProfessorId { get; set; }
     public int TurmaId { get; set; }
     public int DisciplinaId { get; set; }
+}
 }

@@ -1,4 +1,5 @@
-public class Responsavel {
+namespace EscolaPlus.Models.ViewModels{
+public class ResponsavelViewModel {
     public int Id { get; set; }
     public string Nome { get; set; }
     public string Email { get; set; }
@@ -9,7 +10,6 @@ public class Responsavel {
     public string Empresa { get; set; }
     public string Cargo { get; set; }
     public DateTime DataNascimento { get; set; }
-    
-    // Relacionamento com Aluno
-    public ICollection<ResponsavelAluno> Alunos { get; set; } = new List<Aluno>();
+    public ICollection<ResponsavelAlunoViewModel> Alunos { get; set; } = new List<ResponsavelAlunoViewModel>();
+}
 }

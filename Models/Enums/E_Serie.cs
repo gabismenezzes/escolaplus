@@ -1,15 +1,18 @@
-public enum Serie
+namespace EscolaPlus.Models.Enums
 {
-    PrimeiroAno,
-    SegundoAno,
-    TerceiroAno,
-    QuartoAno,
-    QuintoAno,
-    SextoAno,
-    SetimoAno,
-    OitavoAno,
-    NonoAno,
-    PrimeiroAnoEnsinoMedio,
-    SegundoAnoEnsinoMedio,
-    TerceiroAnoEnsinoMedio
+    public enum Serie
+    {
+        PrimeiroAno,
+        SegundoAno,
+        TerceiroAno,
+        QuartoAno,
+        QuintoAno,
+        SextoAno,
+        SetimoAno,
+        OitavoAno,
+        NonoAno,
+        PrimeiroAnoEnsinoMedio,
+        SegundoAnoEnsinoMedio,
+        TerceiroAnoEnsinoMedio
+    }
 }

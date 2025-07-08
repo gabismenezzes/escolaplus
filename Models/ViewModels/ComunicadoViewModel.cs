@@ -1,3 +1,6 @@
+using EscolaPlus.Models.ViewModels;
+
+namespace EscolaPlus.Models{
 public class ComunicadoViewModel
 {
     public int Id { get; set; }
@@ -9,4 +12,5 @@ public class ComunicadoViewModel
     public TurmaViewModel Turma { get; set; }
     public int UsuarioId { get; set; }
     public UsuarioViewModel Usuario { get; set; }
+}
 }
