@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EscolaPlus.Controllers
 {
-    public class DisciplinaController : Controller
+    public class TurmaController : Controller
     {
         // Campo privado para acessar o banco de dados via Entity Framework
         private readonly ApplicationDbContext _context;
 
         // Construtor que recebe o ApplicationContext via injeção de dependência
-        public DisciplinaController(ApplicationDbContext context)
+        public TurmaController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -20,54 +20,46 @@ namespace EscolaPlus.Controllers
         //          AÇÕES GET            //
         // ----------------------------- //
 
-        // Exibe a lista de disciplinas
+        // Exibe a lista de turmas
         public async Task<IActionResult> Index()
         {
-            var disciplinas = await _context.Disciplinas.ToListAsync();
-            return View(disciplinas);
+            var turmas = await _context.Turmas.ToListAsync();
+            return View(turmas);
         }
 
-        // Exibe os detalhes de uma disciplina específica
+        // Exibe os detalhes de uma turma específica
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
 
-            var disciplina = await _context.Disciplinas.FirstOrDefaultAsync(d => d.Id == id);
-            if (disciplina == null) return NotFound();
+            var turma = await _context.Turmas.FirstOrDefaultAsync(t => t.Id == id);
+            if (turma == null) return NotFound();
 
-            return View(disciplina);
+            return View(turma);
         }
 
-        // Retorna o formulário para cadastrar nova disciplina
+        // Retorna o formulário para cadastrar nova turma
         public IActionResult Create()
         {
             return View();
         }
 
+        // ----------------------------- //
+        //         AÇÕES POST            //
+        // ----------------------------- //
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(DisciplinaViewModel disciplina)
+        public async Task<IActionResult> Create(TurmaViewModel turma)
         {
             if (ModelState.IsValid)
             {
-
-                _context.Add(disciplina);
+                _context.Add(turma);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(disciplina);
-        }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null) return NotFound();
-
-            var disciplina = await _context.Disciplinas.FindAsync(id);
-            if (disciplina == null) return NotFound();
-            return View(disciplina);
+            return View(turma);
         }
-        
     }
 }
