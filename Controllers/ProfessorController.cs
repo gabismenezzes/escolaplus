@@ -1,19 +1,17 @@
-// Importa os namespaces necessários
+using EscolaPlus.Data;
+using EscolaPlus.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using EscolaPlus.Data;
-using EscolaPlus.Models;
-using EscolaPlus.Models.ViewModels;
 
 namespace EscolaPlus.Controllers
 {
-    public class AlunoController : Controller
+    public class ProfessorController : Controller
     {
         // Campo privado para acessar o banco de dados via Entity Framework
         private readonly ApplicationDbContext _context;
 
         // Construtor que recebe o ApplicationContext via injeção de dependência
-        public AlunoController(ApplicationDbContext context)
+        public ProfessorController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -22,96 +20,80 @@ namespace EscolaPlus.Controllers
         //          AÇÕES GET            //
         // ----------------------------- //
 
-        // Exibe a lista de alunos
+        // Exibe a lista de professores
         public async Task<IActionResult> Index()
         {
-            // Busca todos os alunos do banco
-            var alunos = await _context.Alunos.ToListAsync();
-            // Retorna a view com a lista de alunos
-            return View(alunos);
+            var professores = await _context.Professores.ToListAsync();
+            return View(professores);
         }
 
-        // Exibe os detalhes de um aluno específico
+        // Exibe os detalhes de um professor específico
         public async Task<IActionResult> Details(int? id)
         {
-            // Se o ID não foi informado, retorna 404
             if (id == null) return NotFound();
 
-            // Busca o aluno no banco pelo ID
-            var aluno = await _context.Alunos.FirstOrDefaultAsync(a => a.Id == id);
-            if (aluno == null) return NotFound();
+            var professor = await _context.Professores.FirstOrDefaultAsync(p => p.Id == id);
+            if (professor == null) return NotFound();
 
-            // Retorna a view com os dados do aluno
-            return View(aluno);
+            return View(professor);
         }
 
-        // Retorna o formulário para cadastrar novo aluno
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // ----------------------------- //
-        //         AÇÕES POST            //
-        // ----------------------------- //
-
-        // Recebe os dados do formulário para cadastrar novo aluno
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AlunoViewModel aluno)
+        public async Task<IActionResult> Create(ProfessorViewModel professor)
         {
             // Verifica se os dados são válidos
             if (ModelState.IsValid)
             {
                 // Adiciona o aluno no banco e salva
-                _context.Add(aluno);
+                _context.Add(professor);
                 await _context.SaveChangesAsync();
                 // Redireciona para a lista de alunos
                 return RedirectToAction(nameof(Index));
             }
 
             // Se houver erro, retorna o formulário com os dados preenchidos
-            return View(aluno);
+            return View(professor);
         }
 
-        // Retorna o formulário de edição de um aluno
+        // Retorna o formulário de edição de um professor
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
 
-            // Busca o aluno no banco
-            var aluno = await _context.Alunos.FindAsync(id);
-            if (aluno == null) return NotFound();
+            // Busca o professor no banco
+            var professor = await _context.Professores.FindAsync(id);
+            if (professor == null) return NotFound();
 
-            return View(aluno);
+            return View(professor);
         }
 
         // Recebe os dados do formulário de edição
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, AlunoViewModel aluno)
+        public async Task<IActionResult> Edit(int id, ProfessorViewModel professor)
         {
             // Verifica se o ID da URL bate com o do objeto
-            if (id != aluno.Id) return NotFound();
+            if (id != professor.Id) return NotFound();
 
             if (ModelState.IsValid)
             {
                 try
                 {
                     // Atualiza os dados do aluno
-                    _context.Update(aluno);
+                    _context.Update(professor);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    // Se o aluno não existir mais, retorna 404
-                    if (!AlunoExists(aluno.Id)) return NotFound();
+                    // Se o professor não existir mais, retorna 404
+                    if (!ProfessorExists(professor.Id)) return NotFound();
                     else throw; // Lança o erro se for outro problema
                 }
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(aluno);
+            return View(professor);
         }
 
         // Exibe a tela de confirmação de exclusão
@@ -131,16 +113,16 @@ namespace EscolaPlus.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            // Busca o aluno
-            var aluno = await _context.Alunos.FindAsync(id);
+            // Busca o professor
+            var professor = await _context.Professores.FindAsync(id);
             // Remove e salva
-            _context.Alunos.Remove(aluno);
+            _context.Professores.Remove(professor);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        // Método auxiliar que verifica se um aluno exliste pelo ID
-        private bool AlunoExists(int id)
+        // Método auxiliar que verifica se um professor existe pelo ID
+        private bool ProfessorExists(int id)
         {
             return _context.Alunos.Any(e => e.Id == id);
         }
