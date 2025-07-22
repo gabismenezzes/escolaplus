@@ -11,6 +11,19 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            @if (User.Identity.IsAuthenticated)
+{
+    <div class="container mt-2 mb-2">
+        <div class="alert alert-info">
+            <strong>Usuário:</strong> @User.Identity.Name <br />
+            <strong>Perfil:</strong> @(User.IsInRole("Admin") ? "Administrador" :
+                                        User.IsInRole("Aluno") ? "Aluno" :
+                                        User.IsInRole("Professor") ? "Professor" :
+                                        "Responsável")
+        </div>
+    </div>
+}
+
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EscolaPlus</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
