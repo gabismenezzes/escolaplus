@@ -7,6 +7,7 @@ namespace ResponsavelAluno.Models.Entities
 
     public class ResponsavelAluno
     {
+        public int Id { get; set; }
         public int ResponsavelId { get; set; }
         public ResponsavelEntity Responsavel { get; set; }
         public int AlunoId { get; set; }

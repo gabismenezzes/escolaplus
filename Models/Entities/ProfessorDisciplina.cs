@@ -2,6 +2,7 @@ namespace EscolaPlus.Models.ViewModels
 {
     public class ProfessorDisciplina
     {
+        public int Id { get; set; }
         public int ProfessorId { get; set; }
         public string NomeProfessor { get; set; }
         public int DisciplinaId { get; set; }
