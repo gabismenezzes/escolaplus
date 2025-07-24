@@ -15,35 +15,32 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public IActionResult Admin()
     {
-        if (User.IsInRole("Admin"))
-        {
-            return RedirectToAction("Index", "Usuario");
-        }
-        else if (User.IsInRole("Aluno"))
-        {
-            return RedirectToAction("Index", "Aluno");
-        }
-        else if (User.IsInRole("Professor"))
-        {
-            return RedirectToAction("Index", "Professor");
-        }
-        else if (User.IsInRole("Responsavel"))
-        {
-            return RedirectToAction("Index", "Responsavel");
-        }
-        else if (User.IsInRole("Secretario"))
-        {
-            return RedirectToAction("Index", "Secretaria");
-        }
-        else
-        {
-        return View("AccessDenied");
-        }
+        return View("Admin/Index");
     }
 
-    public IActionResult Privacy()
+    public IActionResult Aluno()
+    {
+        return View("Aluno/Index");
+    }
+
+    public IActionResult Professor()
+    {
+        return View("Professor/Index");
+    }
+
+    public IActionResult Responsavel()
+    {
+        return View("Responsavel/Index");
+    }
+
+    public IActionResult Secretario()
+    {
+        return View("Secretario/Index");
+    }
+
+    public IActionResult Index()
     {
         return View();
     }
