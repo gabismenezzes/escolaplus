@@ -7,7 +7,9 @@ using EscolaPlus.Models.ViewModels;
 using TurmaEntity= Turma.Models.Entities.Turma;
 public class Aluno {
     public int Id { get; set;}
-    public string NomeMae { get; set;}
+    public string Nome { get; set;}
+    public string Email { get; set;}
+    public string NomeMae { get; set; }
     public string NomePai { get; set;}
     public string Naturalidade { get; set;}
     public string Nacionalidade { get; set;}
@@ -32,5 +34,6 @@ public class Aluno {
     public int UsuarioId { get; set; }
     public int? TurmaId { get; set; }
     public TurmaEntity Turma { get; set; }
-}
+
+    }
 }

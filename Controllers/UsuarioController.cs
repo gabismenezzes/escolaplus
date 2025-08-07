@@ -1,5 +1,6 @@
 using EscolaPlus.Data;
 using EscolaPlus.Models;
+using EscolaPlus.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -78,8 +79,16 @@ namespace EscolaPlus.Controllers
             var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == id);
             if (usuario == null) return NotFound();
 
-            return View(usuario);
+
+            var usuarioViewModel = new EscolaPlus.Models.ViewModels.UsuarioViewModel
+            {
+            Id = usuario.Id,
+            Nome = usuario.Nome,
+            };
+
+            return View(usuarioViewModel);
         }
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -1,0 +1,301 @@
+@model EscolaPlus.Models.ViewModels.RegistraUsuarioViewModel
+@{
+    ViewData["Title"] = "Cadastrar Usuário - EscolaPlus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-sm border" style="border-color: var(--accent-color);">
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <img src="~/images/logoescolaplus.png" alt="EscolaPlus Logo" style="height: 60px;" class="mb-3">
+                        <h2 class="fw-bold" style="color: var(--primary-color);">Cadastrar Novo Usuário</h2>
+                    </div>
+                    <form asp-controller="Secretario" asp-action="RegistraUsuario" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <div class="form-group mb-4">
+                            <label asp-for="UserType" class="form-label">Tipo de Usuário</label>
+                            <select asp-for="UserType" class="form-control" id="userTypeSelect">
+                                <option value="">Selecione o tipo de usuário</option>
+                                <option value="Professor">Professor</option>
+                                <option value="Aluno">Aluno</option>
+                                <option value="Diretor">Diretor</option>
+                            </select>
+                            <span asp-validation-for="UserType" class="text-danger"></span>
+                        </div>
+                        <!-- Professor Form -->
+                        <div id="professorForm" style="display: none;">
+                            <h4 class="mb-3">Dados do Professor</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Professor.Nome" class="form-label">Nome</label>
+                                        <input asp-for="Professor.Nome" class="form-control" placeholder="Digite o nome" />
+                                        <span asp-validation-for="Professor.Nome" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Professor.Email" class="form-label">E-mail</label>
+                                        <input asp-for="Professor.Email" class="form-control" placeholder="Digite o e-mail" />
+                                        <span asp-validation-for="Professor.Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Professor.Senha" class="form-label">Senha</label>
+                                        <input asp-for="Professor.Senha" class="form-control" type="password" placeholder="Digite a senha" />
+                                        <span asp-validation-for="Professor.Senha" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Professor.DataNascimento" class="form-label">Data de Nascimento</label>
+                                        <input asp-for="Professor.DataNascimento" class="form-control" type="date" />
+                                        <span asp-validation-for="Professor.DataNascimento" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Professor.FormacaoAcademica" class="form-label">Formação Acadêmica</label>
+                                        <input asp-for="Professor.FormacaoAcademica" class="form-control" placeholder="Digite a formação" />
+                                        <span asp-validation-for="Professor.FormacaoAcademica" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Professor.Observacoes" class="form-label">Observações</label>
+                                        <textarea asp-for="Professor.Observacoes" class="form-control" placeholder="Digite observações"></textarea>
+                                        <span asp-validation-for="Professor.Observacoes" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Aluno Form -->
+                        <div id="alunoForm" style="display: none;">
+                            <h4 class="mb-3">Dados do Aluno</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.Nome" class="form-label">Nome</label>
+                                        <input asp-for="Aluno.Nome" class="form-control" placeholder="Digite o nome" />
+                                        <span asp-validation-for="Aluno.Nome" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.Email" class="form-label">E-mail</label>
+                                        <input asp-for="Aluno.Email" class="form-control" placeholder="Digite o e-mail" />
+                                        <span asp-validation-for="Aluno.Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.Senha" class="form-label">Senha</label>
+                                        <input asp-for="Aluno.Senha" class="form-control" type="password" placeholder="Digite a senha" />
+                                        <span asp-validation-for="Aluno.Senha" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.NomeMae" class="form-label">Nome da Mãe</label>
+                                        <input asp-for="Aluno.NomeMae" class="form-control" placeholder="Digite o nome da mãe" />
+                                        <span asp-validation-for="Aluno.NomeMae" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.NomePai" class="form-label">Nome do Pai</label>
+                                        <input asp-for="Aluno.NomePai" class="form-control" placeholder="Digite o nome do pai" />
+                                        <span asp-validation-for="Aluno.NomePai" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.Naturalidade" class="form-label">Naturalidade</label>
+                                        <input asp-for="Aluno.Naturalidade" class="form-control" placeholder="Digite a naturalidade" />
+                                        <span asp-validation-for="Aluno.Naturalidade" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.Nacionalidade" class="form-label">Nacionalidade</label>
+                                        <input asp-for="Aluno.Nacionalidade" class="form-control" placeholder="Digite a nacionalidade" />
+                                        <span asp-validation-for="Aluno.Nacionalidade" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.Endereco" class="form-label">Endereço</label>
+                                        <input asp-for="Aluno.Endereco" class="form-control" placeholder="Digite o endereço" />
+                                        <span asp-validation-for="Aluno.Endereco" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.Telefone" class="form-label">Telefone</label>
+                                        <input asp-for="Aluno.Telefone" class="form-control" placeholder="Digite o telefone" />
+                                        <span asp-validation-for="Aluno.Telefone" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.ProfissaoMae" class="form-label">Profissão da Mãe</label>
+                                        <input asp-for="Aluno.ProfissaoMae" class="form-control" placeholder="Digite a profissão" />
+                                        <span asp-validation-for="Aluno.ProfissaoMae" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.ProfissaoPai" class="form-label">Profissão do Pai</label>
+                                        <input asp-for="Aluno.ProfissaoPai" class="form-control" placeholder="Digite a profissão" />
+                                        <span asp-validation-for="Aluno.ProfissaoPai" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.ContatoResponsavel" class="form-label">Contato do Responsável</label>
+                                        <input asp-for="Aluno.ContatoResponsavel" class="form-control" placeholder="Digite o contato" />
+                                        <span asp-validation-for="Aluno.ContatoResponsavel" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.NumeroRG" class="form-label">Número do RG</label>
+                                        <input asp-for="Aluno.NumeroRG" class="form-control" type="text" placeholder="Digite o RG" />
+                                        <span asp-validation-for="Aluno.NumeroRG" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.OrgaoEmissor" class="form-label">Órgão Emissor</label>
+                                        <input asp-for="Aluno.OrgaoEmissor" class="form-control" placeholder="Digite o órgão emissor" />
+                                        <span asp-validation-for="Aluno.OrgaoEmissor" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.CPF" class="form-label">CPF</label>
+                                        <input asp-for="Aluno.CPF" class="form-control" placeholder="Digite o CPF" />
+                                        <span asp-validation-for="Aluno.CPF" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.DataNascimento" class="form-label">Data de Nascimento</label>
+                                        <input asp-for="Aluno.DataNascimento" class="form-control" type="date" />
+                                        <span asp-validation-for="Aluno.DataNascimento" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Aluno.DoencasPreexistentes" class="form-label">Doenças Preexistentes</label>
+                                <input asp-for="Aluno.DoencasPreexistentes" type="checkbox" class="form-check-input" />
+                                <span asp-validation-for="Aluno.DoencasPreexistentes" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Aluno.Doencas" class="form-label">Descrição das Doenças</label>
+                                <textarea asp-for="Aluno.Doencas" class="form-control" placeholder="Digite as doenças"></textarea>
+                                <span asp-validation-for="Aluno.Doencas" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Aluno.IsAlergias" class="form-label">Alergias</label>
+                                <input asp-for="Aluno.IsAlergias" type="checkbox" class="form-check-input" />
+                                <span asp-validation-for="Aluno.IsAlergias" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Aluno.Alergias" class="form-label">Descrição das Alergias</label>
+                                <textarea asp-for="Aluno.Alergias" class="form-control" placeholder="Digite as alergias"></textarea>
+                                <span asp-validation-for="Aluno.Alergias" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Aluno.IsMedicamentos" class="form-label">Medicamentos</label>
+                                <input asp-for="Aluno.IsMedicamentos" type="checkbox" class="form-check-input" />
+                                <span asp-validation-for="Aluno.IsMedicamentos" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Aluno.Medicamentos" class="form-label">Descrição dos Medicamentos</label>
+                                <textarea asp-for="Aluno.Medicamentos" class="form-control" placeholder="Digite os medicamentos"></textarea>
+                                <span asp-validation-for="Aluno.Medicamentos" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Aluno.Observacoes" class="form-label">Observações</label>
+                                <textarea asp-for="Aluno.Observacoes" class="form-control" placeholder="Digite observações"></textarea>
+                                <span asp-validation-for="Aluno.Observacoes" class="text-danger"></span>
+                            </div>
+                            <h4 class="mb-3">Dados do Responsável</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.ResponsavelNome" class="form-label">Nome</label>
+                                        <input asp-for="Aluno.ResponsavelNome" class="form-control" placeholder="Digite o nome" />
+                                        <span asp-validation-for="Aluno.ResponsavelNome" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.ResponsavelEmail" class="form-label">E-mail</label>
+                                        <input asp-for="Aluno.ResponsavelEmail" class="form-control" placeholder="Digite o e-mail" />
+                                        <span asp-validation-for="Aluno.ResponsavelEmail" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.ResponsavelSenha" class="form-label">Senha</label>
+                                        <input asp-for="Aluno.ResponsavelSenha" class="form-control" type="password" placeholder="Digite a senha" />
+                                        <span asp-validation-for="Aluno.ResponsavelSenha" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.ResponsavelTelefone" class="form-label">Telefone</label>
+                                        <input asp-for="Aluno.ResponsavelTelefone" class="form-control" placeholder="Digite o telefone" />
+                                        <span asp-validation-for="Aluno.ResponsavelTelefone" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.ResponsavelCelular" class="form-label">Celular</label>
+                                        <input asp-for="Aluno.ResponsavelCelular" class="form-control" placeholder="Digite o celular" />
+                                        <span asp-validation-for="Aluno.ResponsavelCelular" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.ResponsavelEndereco" class="form-label">Endereço</label>
+                                        <input asp-for="Aluno.ResponsavelEndereco" class="form-control" placeholder="Digite o endereço" />
+                                        <span asp-validation-for="Aluno.ResponsavelEndereco" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.ResponsavelProfissao" class="form-label">Profissão</label>
+                                        <input asp-for="Aluno.ResponsavelProfissao" class="form-control" placeholder="Digite a profissão" />
+                                        <span asp-validation-for="Aluno.ResponsavelProfissao" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.ResponsavelEmpresa" class="form-label">Empresa</label>
+                                        <input asp-for="Aluno.ResponsavelEmpresa" class="form-control" placeholder="Digite a empresa" />
+                                        <span asp-validation-for="Aluno.ResponsavelEmpresa" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.ResponsavelCargo" class="form-label">Cargo</label>
+                                        <input asp-for="Aluno.ResponsavelCargo" class="form-control" placeholder="Digite o cargo" />
+                                        <span asp-validation-for="Aluno.ResponsavelCargo" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Aluno.ResponsavelDataNascimento" class="form-label">Data de Nascimento</label>
+                                        <input asp-for="Aluno.ResponsavelDataNascimento" class="form-control" type="date" />
+                                        <span asp-validation-for="Aluno.ResponsavelDataNascimento" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Diretor Form -->
+                        <div id="diretorForm" style="display: none;">
+                            <h4 class="mb-3">Dados do Diretor</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Diretor.Nome" class="form-label">Nome</label>
+                                        <input asp-for="Diretor.Nome" class="form-control" placeholder="Digite o nome" />
+                                        <span asp-validation-for="Diretor.Nome" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Diretor.Email" class="form-label">E-mail</label>
+                                        <input asp-for="Diretor.Email" class="form-control" placeholder="Digite o e-mail" />
+                                        <span asp-validation-for="Diretor.Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Diretor.Senha" class="form-label">Senha</label>
+                                        <input asp-for="Diretor.Senha" class="form-control" type="password" placeholder="Digite a senha" />
+                                        <span asp-validation-for="Diretor.Senha" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mt-4 text-center">
+                            <button type="submit" class="btn btn-primary w-50" id="submitButton" disabled>
+                                <i class="fas fa-save me-1"></i> Cadastrar
+                            </button>
+                            <a asp-controller="Secretario" asp-action="Index" class="btn btn-secondary w-25 ms-2">
+                                <i class="fas fa-arrow-left me-1"></i> Voltar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.getElementById('userTypeSelect').addEventListener('change', function () {
+            var userType = this.value;
+            document.getElementById('professorForm').style.display = userType === 'Professor' ? 'block' : 'none';
+            document.getElementById('alunoForm').style.display = userType === 'Aluno' ? 'block' : 'none';
+            document.getElementById('diretorForm').style.display = userType === 'Diretor' ? 'block' : 'none';
+            document.getElementById('submitButton').disabled = userType === '';
+        });
+    </script>
+}
