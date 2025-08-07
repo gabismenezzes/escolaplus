@@ -4,54 +4,102 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - EscolaPlus</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EscolaPlus.styles.css" asp-append-version="true" />
+    <link rel="icon" type="image/x-icon" href="~/images/favicon.ico">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            @if (User.Identity.IsAuthenticated)
-{
-    <div class="container mt-2 mb-2">
-        <div class="alert alert-info">
-            <strong>Usuário:</strong> @User.Identity.Name <br />
-            <strong>Perfil:</strong> @(User.IsInRole("Admin") ? "Administrador" :
-                                        User.IsInRole("Aluno") ? "Aluno" :
-                                        User.IsInRole("Professor") ? "Professor" :
-                                        "Responsável")
-        </div>
-    </div>
-}
-
+        <nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EscolaPlus</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/images/logoescolaplus.png" alt="EscolaPlus Logo" class="me-2" style="height: 40px;">
+                    EscolaPlus
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-home me-1"></i> Home</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Dashboard"><i class="fas fa-user-shield me-1"></i> Admin Dashboard</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("Aluno"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="Grades"><i class="fas fa-book me-1"></i> Notas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="Schedule"><i class="fas fa-calendar-alt me-1"></i> Horário</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("Professor"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Teacher" asp-action="Classes"><i class="fas fa-chalkboard-teacher me-1"></i> Turmas</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("Responsável"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Parent" asp-action="StudentProgress"><i class="fas fa-child me-1"></i> Progresso do Aluno</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("Secretario"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Secretario" asp-action="Dashboard"><i class="fas fa-file-alt me-1"></i> Secretaria</a>
+                                </li>
+                            }
+                        }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fas fa-lock me-1"></i> Privacidade</a>
                         </li>
                     </ul>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="d-flex align-items-center">
+                            <div class="me-3 text-muted">
+                                <i class="fas fa-user-circle me-1"></i>
+                                <strong>@User.Identity.Name</strong> 
+                                (@(User.IsInRole("Admin") ? "Administrador" :
+                                    User.IsInRole("Aluno") ? "Aluno" :
+                                    User.IsInRole("Professor") ? "Professor" :
+                                    User.IsInRole("Responsável") ? "Responsável" :
+                                    User.IsInRole("Secretario") ? "Secretário" : "Sem Role"))
+                            </div>
+                            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+                                <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fas fa-sign-out-alt me-1"></i> Sair</button>
+                            </form>
+                        </div>
+                    }
+                    else
+                    {
+                        <a class="btn btn-outline-primary btn-sm" asp-area="" asp-controller="Account" asp-action="Login"><i class="fas fa-sign-in-alt me-1"></i> Entrar</a>
+                    }
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container my-4">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted bg-light py-3">
         <div class="container">
-            &copy; 2025 - EscolaPlus - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - EscolaPlus - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacidade</a> | 
+            <a href="mailto:suporte@escolaplus.com"><i class="fas fa-envelope me-1"></i> Suporte</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

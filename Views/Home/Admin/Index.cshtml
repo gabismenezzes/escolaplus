@@ -1,18 +1,52 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Painel do Administrador - EscolaPlus";
 }
-
-<h1>Bem vindo ao EscolaPlus</h1>
-<h2>Painel do Administrador</h2>
-<ul>
-    <li><a asp-asp-controller="Usuario" asp-action="Index">Gerenciar Usuários</a></li>
-    <li><a asp-asp-controller="Disciplina" asp-action="Index">Gerenciar Disciplinas</a></li>
-    <li><a asp-asp-controller="EventoCalendario" asp-action="Index">Calendário</a></li>
-    <li><a asp-asp-controller="Comunicado" asp-action="Index">Comunicados</a></li>
-</ul>
-
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container my-4">
+    <div class="text-center mb-4">
+        <img src="~/images/logoescolaplus.png" alt="EscolaPlus Logo" style="height: 60px;" class="mb-3">
+        <h1 class="display-5 fw-bold" style="color: var(--primary-color);">Bem-vindo ao EscolaPlus</h1>
+        <h2 class="text-muted">Painel do Administrador</h2>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-3x mb-3" style="color: var(--secondary-color);"></i>
+                    <h5 class="card-title">Gerenciar Usuários</h5>
+                    <p class="card-text text-muted">Adicione, edite ou remova usuários do sistema.</p>
+                    <a asp-controller="Usuario" asp-action="Index" class="btn btn-primary"><i class="fas fa-arrow-right me-1"></i> Acessar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-book-open fa-3x mb-3" style="color: var(--secondary-color);"></i>
+                    <h5 class="card-title">Gerenciar Disciplinas</h5>
+                    <p class="card-text text-muted">Configure disciplinas e seus detalhes.</p>
+                    <a asp-controller="Disciplina" asp-action="Index" class="btn btn-primary"><i class="fas fa-arrow-right me-1"></i> Acessar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-alt fa-3x mb-3" style="color: var(--secondary-color);"></i>
+                    <h5 class="card-title">Calendário</h5>
+                    <p class="card-text text-muted">Gerencie eventos e datas importantes.</p>
+                    <a asp-controller="EventoCalendario" asp-action="Index" class="btn btn-primary"><i class="fas fa-arrow-right me-1"></i> Acessar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-bullhorn fa-3x mb-3" style="color: var(--secondary-color);"></i>
+                    <h5 class="card-title">Comunicados</h5>
+                    <p class="card-text text-muted">Crie e envie comunicados para a comunidade escolar.</p>
+                    <a asp-controller="Comunicado" asp-action="Index" class="btn btn-primary"><i class="fas fa-arrow-right me-1"></i> Acessar</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
