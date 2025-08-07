@@ -1,19 +1,32 @@
 @{
-    ViewData["Title"] = "Página Inicial do Aluno";
+    ViewData["Title"] = "Painel do Aluno - EscolaPlus";
 }
-
-<h1>Bem vindo ao EscolaPlus</h1>
-<h2>Painel do Aluno</h2>
-<ul>
-    <li><a asp-asp-controller="Notas" asp-action="Index">Gerenciar Notas</a></li>
-    <li><a asp-asp-controller="Disciplina" asp-action="Index">Gerenciar Disciplinas</a></li>
-    <li><a asp-asp-controller="Atividades" asp-action="Index">Gerenciar Atividades</a></li>
-    <li><a asp-asp-controller="EventoCalendario" asp-action="Index">Calendário</a></li>
-    <li><a asp-asp-controller="Comunicado" asp-action="Index">Comunicados</a></li>
-</ul>
-
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container my-4">
+    <div class="text-center mb-4">
+        <img src="~/images/logoescolaplus.png" alt="EscolaPlus Logo" style="height: 60px;" class="mb-3">
+        <h1 class="display-5 fw-bold" style="color: var(--primary-color);">Bem-vindo ao EscolaPlus</h1>
+        <h2 class="text-muted">Painel do Aluno</h2>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-book fa-3x mb-3" style="color: var(--secondary-color);"></i>
+                    <h5 class="card-title">Notas</h5>
+                    <p class="card-text text-muted">Consulte suas notas e desempenho.</p>
+                    <a asp-controller="Aluno" asp-action="Notas" class="btn btn-primary"><i class="fas fa-arrow-right me-1"></i> Acessar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-alt fa-3x mb-3" style="color: var(--secondary-color);"></i>
+                    <h5 class="card-title">Horário</h5>
+                    <p class="card-text text-muted">Veja seu horário de aulas.</p>
+                    <a asp-controller="Aluno" asp-action="Horario" class="btn btn-primary"><i class="fas fa-arrow-right me-1"></i> Acessar</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

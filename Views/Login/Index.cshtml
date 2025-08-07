@@ -1,34 +1,50 @@
+@model EscolaPlus.Models.LoginViewModel
 @{
-    ViewData["Title"] = "Login";
-    var returnUrl = ViewData["ReturnUrl"] as string ?? "/";
+    ViewData["Title"] = "Login - EscolaPlus";
 }
-
-<h2>Login</h2>
-
-<form asp-action="Index" method="post">
-    <input type="hidden" name="returnUrl" value="@returnUrl" />
-
-    <div>
-        <label for="username">Usuário:</label>
-        <input type="text" name="username" required />
-    </div>
-
-    <div>
-        <label for="password">Senha:</label>
-        <input type="password" name="password" required />
-    </div>
-
-    <div>
-        <button type="submit">Entrar</button>
-    </div>
-
-    @if (!ViewData.ModelState.IsValid)
-    {
-        <div style="color:red;">
-            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-            {
-                <p>@error.ErrorMessage</p>
-            }
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm border" style="border-color: var(--accent-color);">
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <img src="~/images/logoescolaplus.png" alt="EscolaPlus Logo" style="height: 60px;" class="mb-3">
+                        <h2 class="fw-bold" style="color: var(--primary-color);">Entrar no EscolaPlus</h2>
+                    </div>
+                    <form asp-action="Index" method="post">
+                        <input type="hidden" name="ReturnUrl" value="@ViewData["ReturnUrl"]" />
+                        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Email" class="form-label">E-mail</label>
+                            <div class="input-group">
+                                <span class="input-group-text" style="background-color: var(--accent-color); color: #fff;">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <input asp-for="Email" class="form-control" placeholder="Digite seu e-mail" required />
+                            </div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Senha" class="form-label">Senha</label>
+                            <div class="input-group">
+                                <span class="input-group-text" style="background-color: var(--accent-color); color: #fff;">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                                <input asp-for="Senha" class="form-control" type="password" placeholder="Digite sua senha" required />
+                            </div>
+                            <span asp-validation-for="Senha" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-sign-in-alt me-1"></i> Entrar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    }
-</form>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

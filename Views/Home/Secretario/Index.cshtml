@@ -1,23 +1,32 @@
 @{
-    ViewData["Title"] = "Página Inicial do Secretário";
+    ViewData["Title"] = "Painel do Responsável - EscolaPlus";
 }
-
-<h1>Bem vindo ao EscolaPlus</h1>
-<h2>Painel do Aluno</h2>
-<ul>
-    <li><a asp-asp-controller="Notas" asp-action="Index">Gerenciar Notas</a></li>
-    <li><a asp-asp-controller="Disciplina" asp-action="Index">Gerenciar Disciplinas</a></li>
-    <li><a asp-asp-controller="Atividades" asp-action="Index">Gerenciar Atividades</a></li>
-    <li><a asp-asp-controller="Turmas" asp-action="Index">Gerenciar Turmas</a></li>
-    <li><a asp-asp-controller="Alunos" asp-action="Index">Gerenciar Alunos</a></li>
-    <li><a asp-asp-controller="Professores" asp-action="Index">Gerenciar Professores</a></li>
-    <li><a asp-asp-controller="Responsaveis" asp-action="Index">Gerenciar Responsáveis</a></li>
-    <li><a asp-asp-controller="EventoCalendario" asp-action="Index">Calendário</a></li>
-    <li><a asp-asp-controller="Comunicado" asp-action="Index">Comunicados</a></li>
-</ul>
-
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container my-4">
+    <div class="text-center mb-4">
+        <img src="~/images/logoescolaplus.png" alt="EscolaPlus Logo" style="height: 60px;" class="mb-3">
+        <h1 class="display-5 fw-bold" style="color: var(--primary-color);">Bem-vindo ao EscolaPlus</h1>
+        <h2 class="text-muted">Painel do Responsável</h2>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-user-graduate fa-3x mb-3" style="color: var(--secondary-color);"></i>
+                    <h5 class="card-title">Desempenho do Aluno</h5>
+                    <p class="card-text text-muted">Acompanhe as notas e frequência do aluno.</p>
+                    <a asp-controller="Responsavel" asp-action="Desempenho" class="btn btn-primary"><i class="fas fa-arrow-right me-1"></i> Acessar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-envelope fa-3x mb-3" style="color: var(--secondary-color);"></i>
+                    <h5 class="card-title">Comunicados</h5>
+                    <p class="card-text text-muted">Leia comunicados da escola.</p>
+                    <a asp-controller="Responsavel" asp-action="Comunicados" class="btn btn-primary"><i class="fas fa-arrow-right me-1"></i> Acessar</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
