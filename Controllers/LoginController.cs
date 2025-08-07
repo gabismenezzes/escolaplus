@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using EscolaPlus.Models;
 using BCrypt.Net;
+using EscolaPlus.Models.ViewModels;
 
 namespace EscolaPlus.Controllers
 {

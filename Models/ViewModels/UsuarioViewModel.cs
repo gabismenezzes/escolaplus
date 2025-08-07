@@ -1,4 +1,4 @@
-namespace EscolaPlus.Models{
+namespace EscolaPlus.Models.ViewModels{
 public class UsuarioViewModel
 {
     public int Id { get; set; }

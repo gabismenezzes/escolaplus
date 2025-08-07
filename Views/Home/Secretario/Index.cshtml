@@ -1,20 +1,20 @@
 @{
-    ViewData["Title"] = "Painel do Responsável - EscolaPlus";
+    ViewData["Title"] = "Painel do Secretário - EscolaPlus";
 }
 <div class="container my-4">
     <div class="text-center mb-4">
         <img src="~/images/logoescolaplus.png" alt="EscolaPlus Logo" style="height: 60px;" class="mb-3">
         <h1 class="display-5 fw-bold" style="color: var(--primary-color);">Bem-vindo ao EscolaPlus</h1>
-        <h2 class="text-muted">Painel do Responsável</h2>
+        <h2 class="text-muted">Painel do Secretário</h2>
     </div>
     <div class="row g-4">
         <div class="col-md-6">
             <div class="card h-100 shadow-sm">
                 <div class="card-body text-center">
-                    <i class="fas fa-user-graduate fa-3x mb-3" style="color: var(--secondary-color);"></i>
-                    <h5 class="card-title">Desempenho do Aluno</h5>
-                    <p class="card-text text-muted">Acompanhe as notas e frequência do aluno.</p>
-                    <a asp-controller="Responsavel" asp-action="Desempenho" class="btn btn-primary"><i class="fas fa-arrow-right me-1"></i> Acessar</a>
+                    <i class="fas fa-users fa-3x mb-3" style="color: var(--secondary-color);"></i>
+                    <h5 class="card-title">Cadastrar Novo Usuário</h5>
+                    <p class="card-text text-muted">Adicione professores, alunos (com responsáveis) ou diretores ao sistema.</p>
+                    <a asp-controller="Secretario" asp-action="RegistraUsuario" class="btn btn-primary"><i class="fas fa-arrow-right me-1"></i> Cadastrar</a>
                 </div>
             </div>
         </div>
