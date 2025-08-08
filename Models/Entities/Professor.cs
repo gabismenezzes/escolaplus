@@ -1,4 +1,4 @@
-namespace Professor.Models.Entities
+namespace EscolaPlus.Models.Entities
 {
     using System;
     using System.Collections.Generic;

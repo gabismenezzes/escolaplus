@@ -1,8 +1,8 @@
 using System;
 using TurmaEntity = Turma.Models.Entities.Turma;
-using ProfessorEntity = Professor.Models.Entities.Professor;
 using DisciplinaEntity = Disciplina.Models.Entities.Disciplina;
 using Disciplina.Models.Entities;
+using EscolaPlus.Models.Entities;
 
 namespace TurmaDisciplina.Models.Entities
 {
@@ -22,6 +22,6 @@ namespace TurmaDisciplina.Models.Entities
         public DisciplinaEntity Disciplina { get; set; }
 
         // Relacionamento com Professor
-        public ProfessorEntity Professor { get; set; }
+        public Professor Professor { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 using EscolaPlus.Models.Entities;
 
-namespace Responsavel.Models.Entities
+namespace EscolaPlus.Models.Entities
 {
     public class Responsavel
     {
@@ -16,6 +16,6 @@ namespace Responsavel.Models.Entities
         public DateTime DataNascimento { get; set; }
 
         // Relacionamento com Aluno
-        public ICollection<ResponsavelAluno.Models.Entities.ResponsavelAluno> Alunos { get; set; }
+        public ICollection<ResponsavelAluno> Alunos { get; set; }
     }
 }
