@@ -2,10 +2,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using EscolaPlus.Data;
 using EscolaPlus.Models.Entities;
-using Professor.Models.Entities;
-using Responsavel.Models.Entities;
-using EscolaPlus.Models.Enums;
-using System;
 using EscolaPlus.Models.ViewModels;
 
 namespace EscolaPlus.Controllers
@@ -22,14 +18,14 @@ namespace EscolaPlus.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View("~/Views/Home/Secretario/Index.cshtml");
         }
 
         [HttpGet]
         public IActionResult RegistraUsuario()
         {
             var model = new RegistraUsuarioViewModel();
-            return View(model);
+            return View("~/Views/Home/Secretario/RegistraUsuario.cshtml", model);
         }
 
         [HttpPost]
@@ -55,7 +51,7 @@ namespace EscolaPlus.Controllers
                             TipoUsuario = TipoUsuario.Professor
                         };
 
-                        var professor = new Professor.Models.Entities.Professor
+                        var professor = new Professor
                         {
                             Nome = model.Professor.Nome,
                             Email = model.Professor.Email,
@@ -95,7 +91,7 @@ namespace EscolaPlus.Controllers
                             ProfissaoMae = model.Aluno.ProfissaoMae,
                             ProfissaoPai = model.Aluno.ProfissaoPai,
                             ContatoResponsavel = model.Aluno.ContatoResponsavel,
-                            NumeroRG = int.TryParse(model.Aluno.NumeroRG, out var numeroRg) ? numeroRg : 0,
+                            NumeroRG = int.TryParse(model.Aluno.NumeroRG, out var numeroRg) ? numeroRg : 0, // Convert string to int, default 0 if invalid
                             OrgaoEmissor = model.Aluno.OrgaoEmissor,
                             CPF = model.Aluno.CPF,
                             DoencasPreexistentes = model.Aluno.DoencasPreexistentes,
@@ -119,7 +115,7 @@ namespace EscolaPlus.Controllers
                             TipoUsuario = TipoUsuario.Responsavel
                         };
 
-                        var responsavel = new Responsavel.Models.Entities.Responsavel
+                        var responsavel = new Responsavel
                         {
                             Nome = model.Aluno.ResponsavelNome,
                             Email = model.Aluno.ResponsavelEmail,
@@ -129,10 +125,10 @@ namespace EscolaPlus.Controllers
                             Profissao = model.Aluno.ResponsavelProfissao,
                             Empresa = model.Aluno.ResponsavelEmpresa,
                             Cargo = model.Aluno.ResponsavelCargo,
-                            DataNascimento = model.Aluno.ResponsavelDataNascimento,
+                            DataNascimento = model.Aluno.ResponsavelDataNascimento
                         };
 
-                        var responsavelAluno = new ResponsavelAluno.Models.Entities.ResponsavelAluno
+                        var responsavelAluno = new ResponsavelAluno
                         {
                             Aluno = aluno,
                             Responsavel = responsavel
@@ -192,7 +188,7 @@ namespace EscolaPlus.Controllers
                     TipoUsuario = TipoUsuario.Professor
                 };
 
-                var professor = new Professor.Models.Entities.Professor
+                var professor = new Professor
                 {
                     Nome = model.Nome,
                     Email = model.Email,
@@ -205,7 +201,6 @@ namespace EscolaPlus.Controllers
                 _context.Usuarios.Add(usuario);
                 _context.Professores.Add(professor);
                 _context.SaveChanges();
-
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
@@ -245,7 +240,7 @@ namespace EscolaPlus.Controllers
                     ProfissaoMae = model.ProfissaoMae,
                     ProfissaoPai = model.ProfissaoPai,
                     ContatoResponsavel = model.ContatoResponsavel,
-                    NumeroRG = int.TryParse(model.NumeroRG, out var numeroRg) ? numeroRg : 0,
+                    NumeroRG = int.TryParse(model.NumeroRG, out var numeroRg) ? numeroRg : 0, // Convert string to int, default 0 if invalid
                     OrgaoEmissor = model.OrgaoEmissor,
                     CPF = model.CPF,
                     DoencasPreexistentes = model.DoencasPreexistentes,
@@ -269,7 +264,7 @@ namespace EscolaPlus.Controllers
                     TipoUsuario = TipoUsuario.Responsavel
                 };
 
-                var responsavel = new Responsavel.Models.Entities.Responsavel
+                var responsavel = new Responsavel
                 {
                     Nome = model.ResponsavelNome,
                     Email = model.ResponsavelEmail,
@@ -282,7 +277,7 @@ namespace EscolaPlus.Controllers
                     DataNascimento = model.ResponsavelDataNascimento,
                 };
 
-                var responsavelAluno = new ResponsavelAluno.Models.Entities.ResponsavelAluno
+                var responsavelAluno = new ResponsavelAluno
                 {
                     Aluno = aluno,
                     Responsavel = responsavel
@@ -294,7 +289,6 @@ namespace EscolaPlus.Controllers
                 _context.Responsavel.Add(responsavel);
                 _context.ResponsavelAluno.Add(responsavelAluno);
                 _context.SaveChanges();
-
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
@@ -323,7 +317,6 @@ namespace EscolaPlus.Controllers
 
                 _context.Usuarios.Add(usuario);
                 _context.SaveChanges();
-
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
