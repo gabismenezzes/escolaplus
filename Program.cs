@@ -6,8 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Login"; // ou /Usuario/Login — ajuste conforme sua aplicação
-        options.AccessDeniedPath = "/AcessoNegado"; // opcional
+        options.LoginPath = "/Login";
+        options.AccessDeniedPath = "/AcessoNegado";
     });
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
