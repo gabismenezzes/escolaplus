@@ -2,16 +2,20 @@
     ViewData["Title"] = "Página Inicial do Professor";
 }
 
+<div style="text-align: right; margin-bottom: 20px;">
+    <a asp-controller="Login" asp-action="Logout" class="btn btn-danger">Sair</a>
+</div>
+
 <h1>Bem vindo ao EscolaPlus</h1>
 <h2>Painel do Aluno</h2>
 <ul>
-    <li><a asp-asp-controller="Notas" asp-action="Index">Gerenciar Notas</a></li>
-    <li><a asp-asp-controller="Disciplina" asp-action="Index">Gerenciar Disciplinas</a></li>
-    <li><a asp-asp-controller="Atividades" asp-action="Index">Gerenciar Atividades</a></li>
-    <li><a asp-asp-controller="Turmas" asp-action="Index">Gerenciar Turmas</a></li>
-    <li><a asp-asp-controller="Alunos" asp-action="Index">Gerenciar Alunos</a></li>
-    <li><a asp-asp-controller="EventoCalendario" asp-action="Index">Calendário</a></li>
-    <li><a asp-asp-controller="Comunicado" asp-action="Index">Comunicados</a></li>
+    <li><a asp-controller="Nota" asp-action="Index">Gerenciar Notas</a></li>
+    <li><a asp-controller="Disciplina" asp-action="Index">Gerenciar Disciplinas</a></li>
+    <li><a asp-controller="Atividade" asp-action="Index">Gerenciar Atividades</a></li>
+    <li><a asp-controller="Turma" asp-action="Index">Gerenciar Turmas</a></li>
+    <li><a asp-controller="Aluno" asp-action="Index">Gerenciar Alunos</a></li>
+    <li><a asp-controller="EventoCalendario" asp-action="Index">Calendário</a></li>
+    <li><a asp-controller="Comunicado" asp-action="Index">Comunicados</a></li>
 </ul>
 
 

@@ -40,6 +40,11 @@ public class HomeController : Controller
         return View("Secretario/Index");
     }
 
+    public IActionResult Diretor()
+    {
+        return View("Diretor/Index");
+    }
+
     public IActionResult Index()
     {
         return View();

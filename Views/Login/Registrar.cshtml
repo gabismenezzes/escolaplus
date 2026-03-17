@@ -1,0 +1,187 @@
+@model EscolaPlus.Models.ViewModels.RegistraUsuarioViewModel
+@{
+    ViewData["Title"] = "Criar Conta - EscolaPlus";
+}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm border" style="border-color: var(--accent-color);">
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <img src="~/images/logoescolaplus.png" alt="EscolaPlus Logo" style="height: 60px;" class="mb-3">
+                        <h2 class="fw-bold" style="color: var(--primary-color);">Criar Nova Conta</h2>
+                        <p class="text-muted">Preencha os dados abaixo para se registrar</p>
+                    </div>
+                    <form asp-action="Registrar" method="post">
+                        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+                        
+                        <div class="form-group mb-3">
+                            <label asp-for="UserType" class="form-label">Tipo de Usuário</label>
+                            <select asp-for="UserType" class="form-select" required onchange="toggleUserTypeFields()">
+                                <option value="">-- Selecione --</option>
+                                <option value="Aluno">Aluno</option>
+                                <option value="Professor">Professor</option>
+                                <option value="Responsavel">Responsável</option>
+                                <option value="Diretor">Diretor</option>
+                                <option value="Secretario">Secretário</option>
+                            </select>
+                            <span asp-validation-for="UserType" class="text-danger"></span>
+                        </div>
+
+                        <div id="alunoFields" style="display: none;">
+                            <h5 class="mt-4 mb-3" style="color: var(--primary-color);">Dados do Aluno</h5>
+                            <div class="form-group mb-3">
+                                <label for="Aluno_Nome" class="form-label">Nome Completo</label>
+                                <input asp-for="Aluno.Nome" class="form-control" placeholder="Digite seu nome completo" />
+                                <span asp-validation-for="Aluno.Nome" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Aluno_Email" class="form-label">E-mail</label>
+                                <input asp-for="Aluno.Email" class="form-control" type="email" placeholder="seu.email@exemplo.com" />
+                                <span asp-validation-for="Aluno.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Aluno_Senha" class="form-label">Senha</label>
+                                <input asp-for="Aluno.Senha" class="form-control" type="password" placeholder="Digite uma senha segura" />
+                                <span asp-validation-for="Aluno.Senha" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Aluno_Matricula" class="form-label">Matrícula</label>
+                                <input asp-for="Aluno.Matricula" class="form-control" placeholder="Sua matrícula estudantil" />
+                                <span asp-validation-for="Aluno.Matricula" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div id="professorFields" style="display: none;">
+                            <h5 class="mt-4 mb-3" style="color: var(--primary-color);">Dados do Professor</h5>
+                            <div class="form-group mb-3">
+                                <label for="Professor_Nome" class="form-label">Nome Completo</label>
+                                <input asp-for="Professor.Nome" class="form-control" placeholder="Digite seu nome completo" />
+                                <span asp-validation-for="Professor.Nome" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Professor_Email" class="form-label">E-mail</label>
+                                <input asp-for="Professor.Email" class="form-control" type="email" placeholder="seu.email@exemplo.com" />
+                                <span asp-validation-for="Professor.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Professor_Senha" class="form-label">Senha</label>
+                                <input asp-for="Professor.Senha" class="form-control" type="password" placeholder="Digite uma senha segura" />
+                                <span asp-validation-for="Professor.Senha" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Professor_Matricula" class="form-label">Matrícula</label>
+                                <input asp-for="Professor.Matricula" class="form-control" placeholder="Sua matrícula de professor" />
+                                <span asp-validation-for="Professor.Matricula" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div id="responsavelFields" style="display: none;">
+                            <h5 class="mt-4 mb-3" style="color: var(--primary-color);">Dados do Responsável</h5>
+                            <div class="form-group mb-3">
+                                <label for="Diretor_Nome" class="form-label">Nome Completo</label>
+                                <input asp-for="Diretor.Nome" class="form-control" placeholder="Digite seu nome completo" />
+                                <span asp-validation-for="Diretor.Nome" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Diretor_Email" class="form-label">E-mail</label>
+                                <input asp-for="Diretor.Email" class="form-control" type="email" placeholder="seu.email@exemplo.com" />
+                                <span asp-validation-for="Diretor.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Diretor_Senha" class="form-label">Senha</label>
+                                <input asp-for="Diretor.Senha" class="form-control" type="password" placeholder="Digite uma senha segura" />
+                                <span asp-validation-for="Diretor.Senha" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div id="diretorFields" style="display: none;">
+                            <h5 class="mt-4 mb-3" style="color: var(--primary-color);">Dados do Diretor</h5>
+                            <div class="form-group mb-3">
+                                <label for="Diretor_Nome" class="form-label">Nome Completo</label>
+                                <input id="diretorNome" class="form-control" placeholder="Digite seu nome completo" />
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Diretor_Email" class="form-label">E-mail</label>
+                                <input id="diretorEmail" class="form-control" type="email" placeholder="seu.email@exemplo.com" />
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Diretor_Senha" class="form-label">Senha</label>
+                                <input id="diretorSenha" class="form-control" type="password" placeholder="Digite uma senha segura" />
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Diretor_Matricula" class="form-label">Matrícula</label>
+                                <input id="diretorMatricula" class="form-control" placeholder="Sua matrícula de diretor" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div id="secretarioFields" style="display: none;">
+                            <h5 class="mt-4 mb-3" style="color: var(--primary-color);">Dados do Secretário</h5>
+                            <div class="form-group mb-3">
+                                <label for="Secretario_Nome" class="form-label">Nome Completo</label>
+                                <input id="secretarioNome" class="form-control" placeholder="Digite seu nome completo" />
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Secretario_Email" class="form-label">E-mail</label>
+                                <input id="secretarioEmail" class="form-control" type="email" placeholder="seu.email@exemplo.com" />
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Secretario_Senha" class="form-label">Senha</label>
+                                <input id="secretarioSenha" class="form-control" type="password" placeholder="Digite uma senha segura" />
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Secretario_Matricula" class="form-label">Matrícula</label>
+                                <input id="secretarioMatricula" class="form-control" placeholder="Sua matrícula de secretário" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-4">
+                            <button type="submit" class="btn btn-success w-100">
+                                <i class="fas fa-user-check me-1"></i> Criar Conta
+                            </button>
+                        </div>
+                    </form>
+                    <hr class="my-4">
+                    <div class="text-center">
+                        <p class="mb-0">Já tem uma conta? <a href="@Url.Action("Index", "Login")" class="fw-bold">Faça login aqui</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function toggleUserTypeFields() {
+            const userType = document.querySelector('select[name="UserType"]').value;
+            
+            document.getElementById('alunoFields').style.display = 'none';
+            document.getElementById('professorFields').style.display = 'none';
+            document.getElementById('responsavelFields').style.display = 'none';
+            document.getElementById('diretorFields').style.display = 'none';
+            document.getElementById('secretarioFields').style.display = 'none';
+
+            if (userType === 'Aluno') {
+                document.getElementById('alunoFields').style.display = 'block';
+            } else if (userType === 'Professor') {
+                document.getElementById('professorFields').style.display = 'block';
+            } else if (userType === 'Responsavel') {
+                document.getElementById('responsavelFields').style.display = 'block';
+            } else if (userType === 'Diretor') {
+                document.getElementById('diretorFields').style.display = 'block';
+            } else if (userType === 'Secretario') {
+                document.getElementById('secretarioFields').style.display = 'block';
+            }
+        }
+    </script>
+}

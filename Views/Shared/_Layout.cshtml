@@ -16,10 +16,7 @@
     <div class="container mt-2 mb-2">
         <div class="alert alert-info">
             <strong>Usuário:</strong> @User.Identity.Name <br />
-            <strong>Perfil:</strong> @(User.IsInRole("Admin") ? "Administrador" :
-                                        User.IsInRole("Aluno") ? "Aluno" :
-                                        User.IsInRole("Professor") ? "Professor" :
-                                        "Responsável")
+            <strong>Perfil:</strong> @GetUserRole(User)
         </div>
     </div>
 }
@@ -60,3 +57,18 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+@{
+    string GetUserRole(System.Security.Principal.IPrincipal user)
+    {
+        var roles = new[] { "Administrador", "Diretor", "Responsavel", "Professor", "Aluno", "Secretario" };
+        foreach (var role in roles)
+        {
+            if (user.IsInRole(role))
+            {
+                return role;
+            }
+        }
+        return "Usuário";
+    }
+}

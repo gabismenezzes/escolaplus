@@ -2,13 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
+<div style="text-align: right; margin-bottom: 20px;">
+    <a asp-controller="Login" asp-action="Logout" class="btn btn-danger">Sair</a>
+</div>
+
 <h1>Bem vindo ao EscolaPlus</h1>
 <h2>Painel do Administrador</h2>
 <ul>
-    <li><a asp-asp-controller="Usuario" asp-action="Index">Gerenciar Usuários</a></li>
-    <li><a asp-asp-controller="Disciplina" asp-action="Index">Gerenciar Disciplinas</a></li>
-    <li><a asp-asp-controller="EventoCalendario" asp-action="Index">Calendário</a></li>
-    <li><a asp-asp-controller="Comunicado" asp-action="Index">Comunicados</a></li>
+    <li><a asp-controller="Usuario" asp-action="Index">Gerenciar Usuários</a></li>
+    <li><a asp-controller="Disciplina" asp-action="Index">Gerenciar Disciplinas</a></li>
+    <li><a asp-controller="EventoCalendario" asp-action="Index">Calendário</a></li>
+    <li><a asp-controller="Comunicado" asp-action="Index">Comunicados</a></li>
 </ul>
 
 

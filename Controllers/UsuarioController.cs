@@ -1,10 +1,12 @@
 using EscolaPlus.Data;
 using EscolaPlus.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace EscolaPlus.Controllers
 {
+    [Authorize]
     public class UsuarioController : Controller
     {
         private readonly ApplicationDbContext _context;
