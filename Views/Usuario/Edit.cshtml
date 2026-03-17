@@ -1,0 +1,65 @@
+@model EscolaPlus.Models.ViewModels.UsuarioViewModel
+
+@{
+    ViewData["Title"] = "Editar Usuário";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1>Editar Usuário</h1>
+            <hr />
+
+            <form asp-action="Edit" method="post" novalidate>
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <input type="hidden" asp-for="Id" />
+
+                <div class="mb-3">
+                    <label asp-for="Matricula" class="form-label">Matrícula</label>
+                    <input asp-for="Matricula" class="form-control" />
+                    <span asp-validation-for="Matricula" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Nome" class="form-label">Nome Completo</label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" type="email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Senha" class="form-label">Senha</label>
+                    <input asp-for="Senha" type="password" class="form-control" />
+                    <span asp-validation-for="Senha" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="TipoUsuario" class="form-label">Tipo de Usuário</label>
+                    <select asp-for="TipoUsuario" class="form-select">
+                        <option value="0">Administrador</option>
+                        <option value="1">Professor</option>
+                        <option value="2">Aluno</option>
+                        <option value="3">Responsável</option>
+                        <option value="4">Secretário</option>
+                    </select>
+                    <span asp-validation-for="TipoUsuario" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-success">Atualizar</button>
+                    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

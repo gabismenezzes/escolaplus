@@ -1,0 +1,48 @@
+@model EscolaPlus.Models.Entities.Usuario
+
+@{
+    ViewData["Title"] = "Detalhes do Usuário";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1>Detalhes do Usuário</h1>
+            <hr />
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="fw-bold">ID:</label>
+                    <p>@Model.Id</p>
+                </div>
+                <div class="col-md-6">
+                    <label class="fw-bold">Matrícula:</label>
+                    <p>@Model.Matricula</p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="fw-bold">Nome:</label>
+                    <p>@Model.Nome</p>
+                </div>
+                <div class="col-md-6">
+                    <label class="fw-bold">Email:</label>
+                    <p>@Model.Email</p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="fw-bold">Tipo de Usuário:</label>
+                    <p>@Model.TipoUsuario</p>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+                <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
