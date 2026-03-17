@@ -1,0 +1,39 @@
+@model EscolaPlus.Models.ViewModels.UsuarioViewModel
+
+@{
+    ViewData["Title"] = "Deletar Usuário";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1>Deletar Usuário</h1>
+            <hr />
+
+            <div class="alert alert-warning" role="alert">
+                <strong>Atenção!</strong> Você tem certeza de que deseja deletar este usuário? Esta ação não pode ser desfeita.
+            </div>
+
+            <div class="mb-3">
+                <label class="fw-bold">ID:</label>
+                <p>@Model.Id</p>
+            </div>
+
+            <div class="mb-3">
+                <label class="fw-bold">Nome:</label>
+                <p>@Model.Nome</p>
+            </div>
+
+            <form asp-action="DeleteConfirmed" method="post">
+                <input type="hidden" asp-for="Id" />
+                
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> Confirmar Exclusão
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

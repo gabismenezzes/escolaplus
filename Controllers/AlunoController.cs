@@ -18,26 +18,16 @@ namespace EscolaPlus.Controllers
             _context = context;
         }
 
-        // ----------------------------- //
-        //          AÇÕES GET            //
-        // ----------------------------- //
-
-        // Exibe a lista de alunos
         public async Task<IActionResult> Index()
         {
-            // Busca todos os alunos do banco
             var alunos = await _context.Alunos.ToListAsync();
-            // Retorna a view com a lista de alunos
             return View(alunos);
         }
 
-        // Exibe os detalhes de um aluno específico
         public async Task<IActionResult> Details(int? id)
         {
-            // Se o ID não foi informado, retorna 404
             if (id == null) return NotFound();
 
-            // Busca o aluno no banco pelo ID
             var aluno = await _context.Alunos.FirstOrDefaultAsync(a => a.Id == id);
             if (aluno == null) return NotFound();
 
